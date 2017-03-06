@@ -52,42 +52,29 @@ int tip=0;
 }
 */
 
+
 - (void)viewDidLoad {//将要加载视图
     [super viewDidLoad];
     
-    UITextField * textField =[[UITextField alloc] initWithFrame:CGRectMake(50, 100, 280, 30)];
-    textField.borderStyle=UITextBorderStyleRoundedRect;//边框风格 line 线性风格 none 无风格 bezel  bezel风格
-    textField.placeholder=@"请输入文字";
-    textField.textColor=[UIColor redColor];
-    textField.font=[UIFont systemFontOfSize:14];
-    textField.textAlignment=NSTextAlignmentCenter;//对齐模式
-    //左视图
-    UIImageView * imageview=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tupian"]];
-    textField.leftView=imageview;
-    textField.leftViewMode=UITextFieldViewModeAlways;//总是显示 never 从不显示 whileEditing 编辑时显示 UnlessEditing 非编辑时显示
-    //右视图
-    UIImageView * rightimageview=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tupian"]];
-    textField.rightView=rightimageview;
-    textField.rightViewMode=UITextFieldViewModeAlways;
-    
-    textField.delegate=self;//监听用户输入信息
-    [self.view addSubview:textField];
-    
+    UISwitch * swi=[[UISwitch alloc]initWithFrame:CGRectMake(100, 100, 100, 40)];
+    swi.onTintColor=[UIColor greenColor];//开启填颜色
+    swi.tintColor=[UIColor redColor];//关闭颜色
+    swi.thumbTintColor =[UIColor orangeColor];//开关颜色
+    [swi addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventValueChanged];//当value值发生改变
+    [self.view addSubview:swi];
+                    
 }
-//监听用户输入信息
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-if(string.length>0)
-{
-    if ([string characterAtIndex:0]<'0'||[string characterAtIndex:0]>'9') {
-        NSLog(@"请输入数字");
-        return NO;
+
+-(void)changeColor:(UISwitch *)swi{
+    if (swi.isOn) {//isOn可以判断uiswitch状态
+        self.view.backgroundColor=[UIColor redColor];
+        
+    }else{
+        self.view.backgroundColor=[UIColor whiteColor];
+        
     }
-    if (textField.text.length+string.length>11) {
-        NSLog(@"超过11位数啦");
-        return NO;
-    }
-}
-    return YES;
+    
+    
 }
 
 
