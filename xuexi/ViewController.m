@@ -56,25 +56,17 @@ int tip=0;
 - (void)viewDidLoad {//将要加载视图
     [super viewDidLoad];
     
-    UISwitch * swi=[[UISwitch alloc]initWithFrame:CGRectMake(100, 100, 100, 40)];
-    swi.onTintColor=[UIColor greenColor];//开启填颜色
-    swi.tintColor=[UIColor redColor];//关闭颜色
-    swi.thumbTintColor =[UIColor orangeColor];//开关颜色
-    [swi addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventValueChanged];//当value值发生改变
-    [self.view addSubview:swi];
+    self.view.backgroundColor=[UIColor blackColor];
+    UIPageControl * page =[[UIPageControl alloc]initWithFrame:CGRectMake(50, 100, 280, 30)];
+    page.currentPageIndicatorTintColor=[UIColor redColor];//页码点颜色
+    [page addTarget:self action:@selector(changeNum:) forControlEvents:UIControlEventValueChanged];
+    page.numberOfPages=8;
+    [self.view addSubview:page];
                     
 }
+-(void)changeNum:(UIPageControl *)page {
+    NSLog(@"%lu",page.currentPage);
 
--(void)changeColor:(UISwitch *)swi{
-    if (swi.isOn) {//isOn可以判断uiswitch状态
-        self.view.backgroundColor=[UIColor redColor];
-        
-    }else{
-        self.view.backgroundColor=[UIColor whiteColor];
-        
-    }
-    
-    
 }
 
 
