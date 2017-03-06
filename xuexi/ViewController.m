@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 int tip=0;
-@interface ViewController ()
+@interface ViewController ()<UITextFieldDelegate>//监听用户输入信息
 
 @end
 
@@ -46,41 +46,48 @@ int tip=0;
     [super loadView];
     NSLog(@"%d loadView",++tip);
 }
+/*
 -(void)changeColor{//button selector选择的方法随机更改背景颜色
     self.view.backgroundColor=[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1];
 }
+*/
 
 - (void)viewDidLoad {//将要加载视图
     [super viewDidLoad];
-    UILabel * label =[[UILabel alloc]initWithFrame:CGRectMake(20,100, 370,100)];
-    label.text=@"Hollo World wo ssdsad  dsa dsad sad sa djov  dasod sajodjsaod ";
-    label.numberOfLines=0;
-    label.backgroundColor=[UIColor redColor];
-    label.font=[UIFont systemFontOfSize:23];
-    label.textColor=[UIColor whiteColor];
-    label.textAlignment=NSTextAlignmentCenter;//设置对齐模式
-    label.shadowColor=[UIColor greenColor];//设置阴影颜色
-    label.shadowOffset=CGSizeMake(5, 10);//设置阴影的偏移量
-    [self.view addSubview:label];//添加到当前视图
-    //以下是button
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame=CGRectMake(40, 100, 240, 30);
-    button.backgroundColor=[UIColor redColor];
-    [button setTitle:@"点我一下" forState:UIControlStateNormal];//normal正常的意思
-    [button addTarget:self action:@selector(changeColor) forControlEvents:UIControlEventTouchUpInside];//upinside算是点击的意思吧
-    //down 手指按下时触发
-    //downRepeat 重复按下时触发
-    //Draginside 拖滑移动触发
-    //DragOutside 拖到控件外触发
-    //DragEnter 拖动到控件内触发
-    //DragExit 拖动结束时触发
-    //UpInside 按下并且范围内抬起 ／／也就是普通的按钮按了，松开吧
-    //UpOutside 按下并在范围外抬起
-    //Cabcel 单击被取消时触发
-    //Changed 控件的value 值改变时触发
-    [self.view addSubview:button];//添加到当前视图
-    NSLog(@"%d viewDidLoad",++tip);
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    UITextField * textField =[[UITextField alloc] initWithFrame:CGRectMake(50, 100, 280, 30)];
+    textField.borderStyle=UITextBorderStyleRoundedRect;//边框风格 line 线性风格 none 无风格 bezel  bezel风格
+    textField.placeholder=@"请输入文字";
+    textField.textColor=[UIColor redColor];
+    textField.font=[UIFont systemFontOfSize:14];
+    textField.textAlignment=NSTextAlignmentCenter;//对齐模式
+    //左视图
+    UIImageView * imageview=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tupian"]];
+    textField.leftView=imageview;
+    textField.leftViewMode=UITextFieldViewModeAlways;//总是显示 never 从不显示 whileEditing 编辑时显示 UnlessEditing 非编辑时显示
+    //右视图
+    UIImageView * rightimageview=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tupian"]];
+    textField.rightView=rightimageview;
+    textField.rightViewMode=UITextFieldViewModeAlways;
+    
+    textField.delegate=self;//监听用户输入信息
+    [self.view addSubview:textField];
+    
+}
+//监听用户输入信息
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+if(string.length>0)
+{
+    if ([string characterAtIndex:0]<'0'||[string characterAtIndex:0]>'9') {
+        NSLog(@"请输入数字");
+        return NO;
+    }
+    if (textField.text.length+string.length>11) {
+        NSLog(@"超过11位数啦");
+        return NO;
+    }
+}
+    return YES;
 }
 
 

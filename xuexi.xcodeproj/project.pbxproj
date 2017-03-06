@@ -110,6 +110,7 @@
 				TargetAttributes = {
 					04E5DEAF1E6A986300EEFFB3 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = JQRZXVG7D9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -270,7 +271,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JQRZXVG7D9;
 				INFOPLIST_FILE = xuexi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.one97dog.xuexi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -281,7 +284,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JQRZXVG7D9;
 				INFOPLIST_FILE = xuexi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.one97dog.xuexi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -307,6 +312,7 @@
 				04E5DEC91E6A986300EEFFB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
