@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 int tip=0;
-@interface ViewController ()<UITextFieldDelegate>//监听用户输入信息
+@interface ViewController ()
 
 @end
+
 
 @implementation ViewController
 
@@ -55,19 +56,16 @@ int tip=0;
 
 - (void)viewDidLoad {//将要加载视图
     [super viewDidLoad];
+    UIProgressView * progressView=[[UIProgressView alloc]initWithFrame:CGRectMake(50, 100, 280, 30)];
+    progressView.progressTintColor=[UIColor redColor];//已走过的进度颜色
+    progressView.trackTintColor=[UIColor blueColor];//未走过的进步颜色
+    [self.view addSubview:progressView];
+    progressView.progress=0.8;
     
-    self.view.backgroundColor=[UIColor blackColor];
-    UIPageControl * page =[[UIPageControl alloc]initWithFrame:CGRectMake(50, 100, 280, 30)];
-    page.currentPageIndicatorTintColor=[UIColor redColor];//页码点颜色
-    [page addTarget:self action:@selector(changeNum:) forControlEvents:UIControlEventValueChanged];
-    page.numberOfPages=8;
-    [self.view addSubview:page];
-                    
+    
+    
 }
--(void)changeNum:(UIPageControl *)page {
-    NSLog(@"%lu",page.currentPage);
 
-}
 
 
 - (void)didReceiveMemoryWarning {
