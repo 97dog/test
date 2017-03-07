@@ -56,14 +56,19 @@ int tip=0;
 
 - (void)viewDidLoad {//将要加载视图
     [super viewDidLoad];
-    UIProgressView * progressView=[[UIProgressView alloc]initWithFrame:CGRectMake(50, 100, 280, 30)];
-    progressView.progressTintColor=[UIColor redColor];//已走过的进度颜色
-    progressView.trackTintColor=[UIColor blueColor];//未走过的进步颜色
-    [self.view addSubview:progressView];
-    progressView.progress=0.8;
+    UIStepper * stepper=[[UIStepper alloc]init];
+    stepper.center=CGPointMake(100, 100);//用于设置控件中心位置坐标
+    stepper.continuous=YES;//为yes 添加的触发方法会一直连续改变，触发方法才会执行
+    stepper.autorepeat=YES;//设置为no用户手指抬起完成单击动作
+    stepper.wraps=YES;//进步器是循环 yes当最大的时候会从最小开始
+    stepper.stepValue=1;//步值就是点一下 加多少
+    stepper.tintColor=[UIColor redColor]; //控件颜色
+    [self.view addSubview:stepper];
+    [stepper addTarget:self action:@selector(click:) forControlEvents:UIControlEventValueChanged];
     
-    
-    
+}
+-(void)click:(UIStepper *)step{
+    NSLog(@"%f",step.value);
 }
 
 
