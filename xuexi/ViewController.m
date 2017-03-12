@@ -11,71 +11,52 @@
 
 //@property (nonatomic, strong) UIView *testView;
 //@property (nonatomic, strong) UIButton *button;
-@property (nonatomic,strong)UIButton * btn;
-@property (nonatomic,strong)UIButton * btnTwo;
-@property (nonatomic,strong)UIButton * btnThree;
-@property (nonatomic,strong)UIButton * btnFour;
+
 @end
 
 @implementation ViewController
 
 
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:self.btn];
-    [self.view addSubview:self.btnTwo];
-    [self.view addSubview:self.btnThree];
-    [self.view addSubview:self.btnFour];
+    
 }
--(UIButton *)btn{
-    if (!_btn)
-    {
-        _btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _btn.frame=CGRectMake(100, 100, 100, 100);
-        _btn.backgroundColor=[UIColor redColor];
-        _btn.layer.masksToBounds=YES;//就是圆角开关
-        _btn.layer.cornerRadius=10;//半径
-    }
-    return _btn;
-}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UIAlertController * alertView =[UIAlertController alertControllerWithTitle:@"标题" message:@"警告的内容" preferredStyle:UIAlertControllerStyleAlert];//实现对警告视图的创建和设置//第一个参数视图标题 第2个参数为警告视图的内容，第3参数 为警告视图的风格
+   
+    
+    
+    /*UIAlertAction * action =[UIAlertAction actionWithTitle:@"按钮" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {//第一个参数为按钮标题 2个参数为按钮的风格 3个风格
+        NSLog(@"click");
+    }];*/
 
--(UIButton *)btnTwo{
-    if (!_btnTwo)
-    {
-        _btnTwo=[UIButton buttonWithType:UIButtonTypeCustom];
-        _btnTwo.frame=CGRectMake(50, 50, 50, 50);
-        _btnTwo.backgroundColor=[UIColor greenColor];
-        _btnTwo.layer.masksToBounds=YES;
-        _btnTwo.layer.cornerRadius=25;
-    }
-    return _btnTwo;
-}
+    UIAlertAction * action2 =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"取消");
+    }];
+    
+    UIAlertAction *action3 =[UIAlertAction actionWithTitle:@"注意" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"注意");
+    }];
+    
+    
+    /*[alertView addAction:action];*/
+    [alertView addAction:action2];
+    [alertView addAction:action3];
+    [alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder=@"place";//方法将警告框中 添加一个输入框
+    }];
+    [self presentViewController:alertView animated:YES completion:nil];
+    
 
--(UIButton *)btnThree{
-    if (!_btnThree)
-    {
-        _btnThree=[UIButton buttonWithType:UIButtonTypeCustom];
-        _btnThree.frame=CGRectMake(200, 50, 50, 50);
-        _btnThree.backgroundColor=[UIColor yellowColor];
-        _btnThree.layer.borderColor=[UIColor grayColor].CGColor;//边框颜色
-        _btnThree.layer.borderWidth=2;//边框大小
-    }
-    return _btnThree;
+    
+       
 }
--(UIButton *)btnFour{
-    if (!_btnFour)
-    {
-        _btnFour=[UIButton buttonWithType:UIButtonTypeCustom];
-        _btnFour.frame=CGRectMake(150, 250, 50, 50);
-        _btnFour.backgroundColor=[UIColor orangeColor];
-        _btnFour.layer.shadowColor=[UIColor grayColor].CGColor;//阴影颜色
-        _btnFour.layer.shadowOffset=CGSizeMake(10, 10);//阴影位置
-        _btnFour.layer.shadowOpacity=1;//透明度
-    }
-    return _btnFour;
-}
+                              
 
 
 
