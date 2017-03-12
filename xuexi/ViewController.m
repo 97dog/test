@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-@interface ViewController ()
+@interface ViewController ()<UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) UIView *testView;
-@property (nonatomic, strong) UIButton *button;
+//@property (nonatomic, strong) UIView *testView;
+//@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -19,51 +19,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:self.testView];
-    [self.view addSubview:self.button];
+    UIPickerView *picker =[[UIPickerView alloc]initWithFrame:CGRectMake(50, 100, 280, 150)];
+    picker.delegate=self;
+    picker.dataSource=self;
+    [self.view addSubview:picker];
 }
 
-- (void)buttonClick:(id)sender
-{
-    if (self.testView.superview)
-    {
-        [self.button setTitle:@"添加view按钮" forState:UIControlStateNormal];
-        [self.testView removeFromSuperview];
-    }
-    else
-    {
-        [self.button setTitle:@"清除view按钮" forState:UIControlStateNormal];
-        [self.view addSubview:self.testView];
-    }
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{//设置分区数
+    return 2;
 }
-
-- (UIView *)testView
-{
-    if (!_testView)
-    {
-        CGRect viewRect = [UIScreen mainScreen].bounds;
-        viewRect.size.height = 100.0;
-        _testView = [[UIView alloc] initWithFrame:viewRect];
-        _testView.backgroundColor = [UIColor redColor];
-    }
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{//设置分区行数
+    return 10;
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [NSString stringWithFormat:@"%lu 分区%lu 数据",component,row];//设置分区forcomponent 每一行的数据 component 和row是行列
     
-    return _testView;
-}
-
-- (UIButton *)button
-{
-    if (!_button)
-    {
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.frame = CGRectMake(50, 200, 200.0, 30.0);
-        [_button setTitle:@"清除view按钮" forState:UIControlStateNormal];
-        _button.backgroundColor = [UIColor greenColor];
-        [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
     
-    return _button;
+
 
 }
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 44;
+}
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    return  140;
+    
+}
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    NSLog(@"%lu,%lu",row,component);
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
