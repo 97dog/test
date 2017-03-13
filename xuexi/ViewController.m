@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-@interface ViewController ()
+@interface ViewController ()<UISearchBarDelegate>
 
 //@property (nonatomic, strong) UIView *testView;
 //@property (nonatomic, strong) UIButton *button;
@@ -24,39 +24,78 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UISearchBar * searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 375, 30)];
+    searchBar.tintColor=[UIColor redColor];
+    searchBar.placeholder=@"请输入搜索内容";
+    searchBar.showsScopeBar=YES;
+    searchBar.showsCancelButton=YES;
+    searchBar.showsBookmarkButton=YES;
+    searchBar.showsSearchResultsButton=YES;
+    [searchBar setScopeButtonTitles:@[@"one",@"two",@"three"]];
+    [self.view addSubview:searchBar];
     
 }
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    UIAlertController * alertView =[UIAlertController alertControllerWithTitle:@"标题" message:@"警告的内容" preferredStyle:UIAlertControllerStyleActionSheet];//实现对警告视图的创建和设置//第一个参数视图标题 第2个参数为警告视图的内容，第3参数 为警告视图的风格
-   
-    
-    
-    UIAlertAction * action =[UIAlertAction actionWithTitle:@"one" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {//第一个参数为按钮标题 2个参数为按钮的风格 3个风格
-        NSLog(@"one");
-    }];
-
-    UIAlertAction * action2 =[UIAlertAction actionWithTitle:@"two" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"two");
-    }];
-    
-    UIAlertAction *action3 =[UIAlertAction actionWithTitle:@"three" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"three");
-    }];
-    
-    
-    [alertView addAction:action];
-    [alertView addAction:action2];
-    [alertView addAction:action3];
-    /*[alertView addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder=@"place";//方法将警告框中 添加一个输入框
-    }];*/
-    [self presentViewController:alertView animated:YES completion:nil];
-    
-
-    
-       
+//单击切换扩展栏上按钮时触发的方法
+-(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
+       NSLog(@"1");
 }
-                              
+
+
+
+
+
+/*
+//搜索框中字符将要改变时触发的方法
+-(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(nonnull NSString *)text{
+    NSLog(@"wo caonirmdaxig");
+    return YES;
+    
+}
+//搜索框中字符已经改变后触发的方法
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText{
+    NSLog(@"1");
+}
+//单击图书按钮触发的方法
+
+-(void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"1");
+}
+//单击取消按钮触发的方法
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"1");
+}
+
+//单击搜索结果按钮触发的方法
+-(void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"1");
+}
+//单击键盘上的搜索触发的方法
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+        NSLog(@"请输入数字");
+}
+//搜索栏将要开始编辑时触发的方法
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    return YES;
+}
+//搜索栏已经结束编辑时触发的方法
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+    NSLog(@"dasdasd");
+    return YES;
+}
+
+//搜索栏已经开始编辑时触发的方法
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    NSLog(@"1");
+}
+
+//搜索栏已经结束编辑时触发的方法
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    NSLog(@"1");
+}
+
+*/
+
 
 
 
