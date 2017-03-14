@@ -32,11 +32,13 @@
     searchBar.showsBookmarkButton=YES;
     searchBar.showsSearchResultsButton=YES;
     [searchBar setScopeButtonTitles:@[@"one",@"two",@"three"]];
+     searchBar.delegate=self;
     [self.view addSubview:searchBar];
     
 }
 //单击切换扩展栏上按钮时触发的方法
 -(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
+   
        NSLog(@"1");
 }
 
@@ -44,13 +46,15 @@
 
 
 
-/*
+
 //搜索框中字符将要改变时触发的方法
 -(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(nonnull NSString *)text{
+    
     NSLog(@"wo caonirmdaxig");
     return YES;
     
 }
+
 //搜索框中字符已经改变后触发的方法
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText{
     NSLog(@"1");
@@ -94,7 +98,7 @@
     NSLog(@"1");
 }
 
-*/
+
 
 
 
