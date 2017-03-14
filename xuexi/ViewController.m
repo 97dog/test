@@ -24,81 +24,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UISearchBar * searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 375, 30)];
-    searchBar.tintColor=[UIColor redColor];
-    searchBar.placeholder=@"请输入搜索内容";
-    searchBar.showsScopeBar=YES;
-    searchBar.showsCancelButton=YES;
-    searchBar.showsBookmarkButton=YES;
-    searchBar.showsSearchResultsButton=YES;
-    [searchBar setScopeButtonTitles:@[@"one",@"two",@"three"]];
-     searchBar.delegate=self;
-    [self.view addSubview:searchBar];
-    
+    UIDatePicker * dataPicke=[[UIDatePicker alloc]initWithFrame:CGRectMake(50, 100, 280, 150)];
+    dataPicke.datePickerMode=UIDatePickerModeTime;//time时间模式 Date日期模式 DateAndTime 日期和时间模式 CountDownTimer 计时模式
+    [dataPicke addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:dataPicke];
 }
-//单击切换扩展栏上按钮时触发的方法
--(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
-   
-       NSLog(@"1");
+-(void)change:(UIDatePicker *)picker{
+    NSLog(@"%@",picker.date);
+
 }
-
-
-
-
-
-
-//搜索框中字符将要改变时触发的方法
--(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(nonnull NSString *)text{
-    
-    NSLog(@"wo caonirmdaxig");
-    return YES;
-    
-}
-
-//搜索框中字符已经改变后触发的方法
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText{
-    NSLog(@"1");
-}
-//单击图书按钮触发的方法
-
--(void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"1");
-}
-//单击取消按钮触发的方法
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"1");
-}
-
-//单击搜索结果按钮触发的方法
--(void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"1");
-}
-//单击键盘上的搜索触发的方法
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-        NSLog(@"请输入数字");
-}
-//搜索栏将要开始编辑时触发的方法
--(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    return YES;
-}
-//搜索栏已经结束编辑时触发的方法
--(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    NSLog(@"dasdasd");
-    return YES;
-}
-
-//搜索栏已经开始编辑时触发的方法
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    NSLog(@"1");
-}
-
-//搜索栏已经结束编辑时触发的方法
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    NSLog(@"1");
-}
-
-
 
 
 
