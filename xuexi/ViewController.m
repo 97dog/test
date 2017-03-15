@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-@interface ViewController ()<UISearchBarDelegate>
+@interface ViewController ()<UISearchBarDelegate,UIAlertViewDelegate>
 
 //@property (nonatomic, strong) UIView *testView;
 //@property (nonatomic, strong) UIButton *button;
@@ -34,6 +34,14 @@
 
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    UIAlertView * alert =[[UIAlertView alloc]initWithTitle:@"标题" message:@"内容" delegate:self  cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"click");
+}
 
 
 
